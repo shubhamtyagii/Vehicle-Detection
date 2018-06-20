@@ -1,0 +1,1179 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Vehicle\_Detection}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \textbf{Vehicle Detection Project}
+
+The goals / steps of this project are the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Perform a Histogram of Oriented Gradients (HOG) feature extraction on
+  a labeled training set of images and train a classifier Linear SVM
+  classifier
+\item
+  Optionally, you can also apply a color transform and append binned
+  color features, as well as histograms of color, to your HOG feature
+  vector.
+\item
+  Note: for those first two steps don't forget to normalize your
+  features and randomize a selection for training and testing.
+\item
+  Implement a sliding-window technique and use your trained classifier
+  to search for vehicles in images.
+\item
+  Run your pipeline on a video stream (start with the test\_video.mp4
+  and later implement on full project\_video.mp4) and create a heat map
+  of recurring detections frame by frame to reject outliers and follow
+  detected vehicles.
+\item
+  Estimate a bounding box for vehicles detected.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{cv2} 
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{image} \PY{k}{as} \PY{n+nn}{img}
+         \PY{k+kn}{import} \PY{n+nn}{glob} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{}utility function to fetch the image path+names for cars and non cars respectively.}
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}image\PYZus{}names}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{non\PYZus{}vehicles1}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TrainingData/non\PYZhy{}vehicles/non\PYZhy{}vehicles/Extras/ex*.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{non\PYZus{}vehicles2}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TrainingData/non\PYZhy{}vehicles/non\PYZhy{}vehicles/GTI/im*.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{non\PYZus{}vehicles}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{non\PYZus{}vehicles1}\PY{p}{,}\PY{n}{non\PYZus{}vehicles2}\PY{p}{)}
+             \PY{n}{vehicles}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TrainingData/vehicles/vehicles/*/*.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{non\PYZus{}vehicles}\PY{p}{,}\PY{n}{vehicles}
+\end{Verbatim}
+
+
+    \hypertarget{visualizing-training-data}{%
+\subsubsection{Visualizing Training
+Data}\label{visualizing-training-data}}
+
+So in the training set we have \emph{8968 Non Vehicle Images} and
+\emph{8792 vehicle Images}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{data}\PY{o}{=}\PY{n}{get\PYZus{}image\PYZus{}names}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{non\PYZus{}vehicle images=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and vehhile images=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+non\_vehicle images= 8968 and vehhile images= 8792
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k}{def} \PY{n+nf}{load\PYZus{}images}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{non\PYZus{}vehicle}\PY{p}{,}\PY{n}{vehicle}\PY{o}{=}\PY{n}{get\PYZus{}image\PYZus{}names}\PY{p}{(}\PY{p}{)}
+             \PY{n}{cars}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{n}{non\PYZus{}cars}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{vehicle}\PY{p}{:}
+                 \PY{n}{cars}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{n}{name}\PY{p}{)}\PY{p}{)}
+             \PY{k}{for} \PY{n}{name} \PY{o+ow}{in} \PY{n}{non\PYZus{}vehicle}\PY{p}{:}
+                 \PY{n}{non\PYZus{}cars}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{n}{name}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{cars}\PY{p}{,}\PY{n}{non\PYZus{}cars}
+\end{Verbatim}
+
+
+    \hypertarget{training-data-shape}{%
+\subsubsection{Training Data Shape}\label{training-data-shape}}
+
+Each training image has 64x64x3 shape.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{cars}\PY{p}{,}\PY{n}{non\PYZus{}cars}\PY{o}{=}\PY{n}{load\PYZus{}images}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(64, 64, 3)
+
+    \end{Verbatim}
+
+    \hypertarget{visualizing-images}{%
+\paragraph{Visualizing Images}\label{visualizing-images}}
+
+Below is an example of Car and Non Car Image
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{f}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Car Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{non\PYZus{}cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Non car Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} <matplotlib.text.Text at 0x1a4d4ada320>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{hog-features}{%
+\subsection{HOG Features}\label{hog-features}}
+
+To detect the vehicles I used Histogram of Oriented Gradients as one of
+the feature. I took HOG on the `YCrCb' color space and to be more
+specific I used `Cr' color channel to extract HOG features. I tried
+different color spaces and different color channels while going through
+the classroom quizes, however while trying different combinations and
+found that the classifier accuracy is best if I use color channel `Cr'
+for the hog features.
+
+Function below takes image and color space name as input, orientation
+and other parameters are optional. However during the training I used
+\texttt{pix\_per\_cell=16} \texttt{orient=9} \texttt{Color\_space=YCrCb}
+\texttt{cells\_per\_block=2} and \texttt{Channel=1}
+
+I used this configurations because I realized that the accuracy of
+classifier is above 95\% if I am feeding it data, taken out of hog with
+this configuration. The feature vector length is \emph{576} if I use
+this configuration.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{k+kn}{from} \PY{n+nn}{skimage}\PY{n+nn}{.}\PY{n+nn}{feature} \PY{k}{import} \PY{n}{hog}
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}hog\PYZus{}features}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{cspace}\PY{p}{,} \PY{n}{orient}\PY{o}{=}\PY{l+m+mi}{9}\PY{p}{,} \PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{l+m+mi}{8}\PY{p}{,} \PY{n}{cell\PYZus{}per\PYZus{}block}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{vis}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                              \PY{n}{feature\PYZus{}vec}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{cspace} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BGR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HSV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2LUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HLS}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YCrCb}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RGB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+                     \PY{k}{else}\PY{p}{:} \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+             \PY{n}{return\PYZus{}list} \PY{o}{=} \PY{n}{hog}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{channel}\PY{p}{]}\PY{p}{,} \PY{n}{orientations}\PY{o}{=}\PY{n}{orient}\PY{p}{,} \PY{n}{pixels\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{p}{(}\PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{p}{,} \PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{p}{)}\PY{p}{,}
+                                           \PY{n}{cells\PYZus{}per\PYZus{}block}\PY{o}{=}\PY{p}{(}\PY{n}{cell\PYZus{}per\PYZus{}block}\PY{p}{,} \PY{n}{cell\PYZus{}per\PYZus{}block}\PY{p}{)}\PY{p}{,}
+                                           \PY{n}{block\PYZus{}norm}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L2\PYZhy{}Hys}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{transform\PYZus{}sqrt}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} 
+                                           \PY{n}{visualise}\PY{o}{=} \PY{n}{vis}\PY{p}{,} \PY{n}{feature\PYZus{}vector}\PY{o}{=} \PY{n}{feature\PYZus{}vec}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} name returns explicitly}
+             \PY{n}{hog\PYZus{}features} \PY{o}{=} \PY{n}{return\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{k}{if} \PY{n}{vis}\PY{p}{:}
+                 \PY{n}{hog\PYZus{}image} \PY{o}{=} \PY{n}{return\PYZus{}list}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                 \PY{k}{return} \PY{n}{hog\PYZus{}features}\PY{p}{,} \PY{n}{hog\PYZus{}image}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{hog\PYZus{}features}
+\end{Verbatim}
+
+
+    \hypertarget{output-of-hog}{%
+\subsubsection{Output of HOG}\label{output-of-hog}}
+
+Below is the example of HOG output
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{hog\PYZus{}features}\PY{p}{,}\PY{n}{hog\PYZus{}image}\PY{o}{=}\PY{n}{get\PYZus{}hog\PYZus{}features}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shape of hog features }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{hog\PYZus{}features}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{hog\PYZus{}image}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+shape of hog features  (324,)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} <matplotlib.image.AxesImage at 0x1a4d4b8c198>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{spatial-binning}{%
+\subsection{Spatial Binning}\label{spatial-binning}}
+
+I used Spatial Binning to extract more features from the image. So in
+Spatial Binning we take the raw pixel values from the image. The basic
+concept here is; in images, even if we decrease the size of the image
+within certain range, it still retains most of its information.
+
+So here input image was 64x64 image which I resized as 16x16 image and
+then I used it as feature vector for the classifier along with HOG
+feature vector. I used \texttt{ravel()} function to convert the 2D array
+to vector.
+
+I used `YUV' color space for spatial binning, the below function takes
+the image input and convert it to the given Color space. After few
+observations it was clear `YUV' gives good result in our case, this can
+be seen in the sample outputs below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{k}{def} \PY{n+nf}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BGR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Convert image to new color space (if specified)}
+             \PY{k}{if} \PY{n}{cspace} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BGR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HSV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2LUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HLS}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YCrCb}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RGB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+                     \PY{k}{else}\PY{p}{:} \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Use cv2.resize().ravel() to create the feature vector}
+             \PY{n}{small\PYZus{}img}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{,}\PY{n}{size}\PY{p}{)} \PY{c+c1}{\PYZsh{} Remove this line!}
+             \PY{c+c1}{\PYZsh{} Return the feature vector}
+             \PY{n}{features}\PY{o}{=}\PY{n}{small\PYZus{}img}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{features}
+\end{Verbatim}
+
+
+    \hypertarget{spatial-binning-output-for-car-images}{%
+\paragraph{Spatial Binning output for Car
+Images}\label{spatial-binning-output-for-car-images}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} [<matplotlib.lines.Line2D at 0x1a4d4c63358>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{spatial-binning-output-for-non-car-images}{%
+\paragraph{Spatial Binning output for Non Car
+Images}\label{spatial-binning-output-for-non-car-images}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{non\PYZus{}cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} [<matplotlib.lines.Line2D at 0x1a4d4ee3198>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{color-histogram}{%
+\subsection{Color Histogram}\label{color-histogram}}
+
+I also used Color Histograms to fetch features out of an image. As the
+name implies we take an image and based on the given color channel and
+bin size specifications we calculate the histogram for each given
+channel and bin size and then append them together to form a feature
+vector.
+
+I used HLS color space and `S' color channel for the color histogram
+feature vector. After doing some experimentaion I found that Saturation
+can be a reliable feature to identify the Vehicles.
+
+I used \texttt{Number\ of\ bins=32} \texttt{color\ space=HLS} and
+\texttt{bins\ range=0-256}
+
+Below is the sample output of color histogram for a given image and
+given color space(HLS in our case).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{def} \PY{n+nf}{color\PYZus{}hist}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{nbins}\PY{o}{=}\PY{l+m+mi}{32}\PY{p}{,} \PY{n}{channel}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,}\PY{n}{bins\PYZus{}range}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{256}\PY{p}{)}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BGR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{v}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Compute the histogram of the RGB channels separately}
+             \PY{k}{if} \PY{n}{cspace} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BGR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HSV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HSV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2LUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2HLS}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YUV}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2YCrCb}\PY{p}{)}
+                     \PY{k}{elif} \PY{n}{cspace} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RGB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                         \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+                     \PY{k}{else}\PY{p}{:} \PY{n}{feature\PYZus{}image} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{image}\PY{p}{)}
+             \PY{k}{if}\PY{p}{(}\PY{n}{channel}\PY{o}{==}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{first\PYZus{}hist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{n}{nbins}\PY{p}{,}\PY{n+nb}{range}\PY{o}{=}\PY{n}{bins\PYZus{}range}\PY{p}{)}
+                 \PY{n}{second\PYZus{}hist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{n}{nbins}\PY{p}{,}\PY{n+nb}{range}\PY{o}{=}\PY{n}{bins\PYZus{}range}\PY{p}{)}
+                 \PY{n}{third\PYZus{}hist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{n}{nbins}\PY{p}{,}\PY{n+nb}{range}\PY{o}{=}\PY{n}{bins\PYZus{}range}\PY{p}{)}
+                 \PY{n}{bin\PYZus{}edges}\PY{o}{=}\PY{n}{first\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             
+                 \PY{n}{bin\PYZus{}centers} \PY{o}{=} \PY{p}{(}\PY{n}{bin\PYZus{}edges}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{o}{+}\PY{n}{bin\PYZus{}edges}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n+nb}{len}\PY{p}{(}\PY{n}{bin\PYZus{}edges}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                 \PY{k}{if}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{:}
+                     \PY{k}{return} \PY{n}{first\PYZus{}hist}\PY{p}{,} \PY{n}{second\PYZus{}hist}\PY{p}{,} \PY{n}{third\PYZus{}hist}\PY{p}{,}\PY{n}{bin\PYZus{}centers}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{hist\PYZus{}features} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{first\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{second\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{third\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Return the individual histograms, bin\PYZus{}centers and feature vector}
+                     \PY{k}{return} \PY{n}{hist\PYZus{}features}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{first\PYZus{}hist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{feature\PYZus{}image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{channel}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{o}{=}\PY{n}{nbins}\PY{p}{,}\PY{n+nb}{range}\PY{o}{=}\PY{n}{bins\PYZus{}range}\PY{p}{)}
+             \PY{n}{bin\PYZus{}edges}\PY{o}{=}\PY{n}{first\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} Generating bin centers}
+             \PY{n}{bin\PYZus{}centers} \PY{o}{=} \PY{p}{(}\PY{n}{bin\PYZus{}edges}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{o}{+}\PY{n}{bin\PYZus{}edges}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n+nb}{len}\PY{p}{(}\PY{n}{bin\PYZus{}edges}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+             \PY{c+c1}{\PYZsh{} Concatenate the histograms into a single feature vector}
+            \PY{c+c1}{\PYZsh{} hist\PYZus{}features = np.concatenate((rhist[0],ghist[0],bhist[0]))}
+             \PY{c+c1}{\PYZsh{} Return the individual histograms, bin\PYZus{}centers and feature vector}
+             \PY{k}{if}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{first\PYZus{}hist}\PY{p}{,}\PY{n}{bin\PYZus{}centers}
+             \PY{k}{return} \PY{n}{first\PYZus{}hist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{output-of-color-histogram-function}{%
+\paragraph{Output of Color Histogram
+function}\label{output-of-color-histogram-function}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{histogram}\PY{o}{=}\PY{n}{color\PYZus{}hist}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{v}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{131}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{256}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{H Histogram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{132}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{256}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{L Histogram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{133}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{256}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S Histogram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{histogram}\PY{o}{=}\PY{n}{color\PYZus{}hist}\PY{p}{(}\PY{n}{cars}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{v}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{24}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{131}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{histogram}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{256}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{S Histogram}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}47}]:} <matplotlib.text.Text at 0x1a4dc5c3470>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{classifier}{%
+\subsection{Classifier}\label{classifier}}
+
+I used Support Vector Machine as my classifier, I choose this because it
+has simple implementaion and training time for this classifier is also
+considerably small while compared with Neural Networks and other
+classifiers.
+
+Initially I was using `linear' kernel, but even after acheiving 96\%
+test accuracy with the linear kernel there were too many false postive
+detections. Then I thought of increasing the size of feature vector or
+to use Radial Basis function(`rbf') as kernel. However I used `rbf'
+kernel since it gave 99\% test accuracy and the number of false positive
+detection also decreased drastically.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{LinearSVC}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}
+         
+         \PY{k}{def} \PY{n+nf}{train\PYZus{}model}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{:}
+             \PY{n}{svc}\PY{o}{=}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+             \PY{k}{return} \PY{n}{svc}
+             
+\end{Verbatim}
+
+
+    \hypertarget{extract-features}{%
+\subsection{Extract Features}\label{extract-features}}
+
+Function \texttt{extract\_fetures()} is used to fetch feature vector
+from each image during the training phase of the classifier. This
+function simply extracts the feature vector for each image and it dumps
+these features into a pickle file, later we use these features to traing
+our classifier.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{k+kn}{import} \PY{n+nn}{time}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{cross\PYZus{}validation} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+         \PY{k}{def} \PY{n+nf}{extract\PYZus{}features}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{cars}\PY{p}{,}\PY{n}{non\PYZus{}cars}\PY{o}{=}\PY{n}{load\PYZus{}images}\PY{p}{(}\PY{p}{)}
+             \PY{n}{cars\PYZus{}features}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{n}{non\PYZus{}cars\PYZus{}features}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{car} \PY{o+ow}{in} \PY{n}{cars}\PY{p}{:}
+                 \PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{o}{=}\PY{n}{color\PYZus{}hist}\PY{p}{(}\PY{n}{car}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}color\PYZus{}hist\PYZus{}features2=color\PYZus{}hist(car,cspace=\PYZsq{}YUV\PYZsq{},channel=1)}
+                 \PY{n}{hog\PYZus{}features}\PY{o}{=}\PY{n}{get\PYZus{}hog\PYZus{}features}\PY{p}{(}\PY{n}{car}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{spatial\PYZus{}features}\PY{o}{=}\PY{n}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{car}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}temp=np.append(temp,color\PYZus{}hist\PYZus{}features2)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{hog\PYZus{}features}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{spatial\PYZus{}features}\PY{p}{)}
+                 \PY{n}{cars\PYZus{}features}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{)}
+             
+             \PY{k}{for} \PY{n}{non\PYZus{}car} \PY{o+ow}{in} \PY{n}{non\PYZus{}cars}\PY{p}{:}
+                 \PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{o}{=}\PY{n}{color\PYZus{}hist}\PY{p}{(}\PY{n}{non\PYZus{}car}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}color\PYZus{}hist\PYZus{}features2=color\PYZus{}hist(non\PYZus{}car,cspace=\PYZsq{}YUV\PYZsq{},channel=1)}
+                 \PY{n}{hog\PYZus{}features}\PY{o}{=}\PY{n}{get\PYZus{}hog\PYZus{}features}\PY{p}{(}\PY{n}{non\PYZus{}car}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{spatial\PYZus{}features}\PY{o}{=}\PY{n}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{non\PYZus{}car}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}temp=np.append(temp,color\PYZus{}hist\PYZus{}features2)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{hog\PYZus{}features}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{spatial\PYZus{}features}\PY{p}{)}
+                 \PY{n}{non\PYZus{}cars\PYZus{}features}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{)}
+             
+             \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{obj1}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cars}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cars\PYZus{}features}\PY{p}{]}
+             \PY{n}{obj2}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{non\PYZus{}cars}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{non\PYZus{}cars\PYZus{}features}\PY{p}{]}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{obj1}\PY{p}{,} \PY{n}{file}\PY{p}{)}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{obj2}\PY{p}{,} \PY{n}{file}\PY{p}{)}
+             \PY{n}{file}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}   
+\end{Verbatim}
+
+
+    \hypertarget{train-model-and-save}{%
+\subsection{Train Model and save}\label{train-model-and-save}}
+
+Function \texttt{train\_and\_save()} uses the features received from
+function \texttt{extract\_features} to train the classifier and later it
+save it to a pickle file.
+
+I have used \texttt{StandardScaler()} to scale all the features in the
+feature vector for all the images, it is important since if there is so
+much variation among the values of the features then there are chances
+that the classifier gets biased towards the higher value features. I had
+to save the scaler once I fetch it, since same scaler shall be used to
+make predictions which was used to scale the input during the training.
+
+Length of the feature vector is 1124
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k}{def} \PY{n+nf}{train\PYZus{}and\PYZus{}save}\PY{p}{(}\PY{n}{flag\PYZus{}extract\PYZus{}features}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if}\PY{p}{(}\PY{n}{flag\PYZus{}extract\PYZus{}features}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{extract\PYZus{}features}\PY{p}{(}\PY{p}{)}
+             \PY{n}{pickle\PYZus{}in} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}in}\PY{p}{)}
+             \PY{n}{cars\PYZus{}features}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}in}\PY{p}{)}
+             \PY{n}{non\PYZus{}cars\PYZus{}features}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{pickle\PYZus{}in}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Length of feature vector=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cars\PYZus{}features}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{cars\PYZus{}features}\PY{p}{,} \PY{n}{non\PYZus{}cars\PYZus{}features}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float64}\PY{p}{)}
+             
+         \PY{c+c1}{\PYZsh{} Define the labels vector}
+             \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{cars\PYZus{}features}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{non\PYZus{}cars\PYZus{}features}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Split up data into randomized training and test sets}
+             \PY{n}{rand\PYZus{}state} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+             \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{n}{rand\PYZus{}state}\PY{p}{)}
+         
+         
+             \PY{n}{X\PYZus{}scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+         
+             \PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{X\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+             \PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{X\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+             \PY{n}{t}\PY{o}{=}\PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{n}{clf}\PY{o}{=}\PY{n}{train\PYZus{}model}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{)}
+             \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{t2}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seconds to train SVC...}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Check the score of the SVC}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy of SVC = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{round}\PY{p}{(}\PY{n}{clf}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+             \PY{n}{file}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{classifier.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{obj1}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{model}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{clf}\PY{p}{]}
+             \PY{n}{obj2}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scaler}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{X\PYZus{}scaler}\PY{p}{]}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{obj1}\PY{p}{,}\PY{n}{file}\PY{p}{)}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{obj2}\PY{p}{,}\PY{n}{file}\PY{p}{)}
+             \PY{n}{file}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{clf}\PY{p}{,}\PY{n}{X\PYZus{}scaler}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{train\PYZus{}and\PYZus{}save}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Length of feature vector= 1124
+41.59 Seconds to train SVC{\ldots}
+Test Accuracy of SVC =  0.9927
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} (SVC(C=1.0, cache\_size=200, class\_weight=None, coef0=0.0,
+            decision\_function\_shape='ovr', degree=3, gamma='auto', kernel='rbf',
+            max\_iter=-1, probability=False, random\_state=None, shrinking=True,
+            tol=0.001, verbose=False),
+          StandardScaler(copy=True, with\_mean=True, with\_std=True))
+\end{Verbatim}
+            
+    \hypertarget{sliding-window}{%
+\subsection{Sliding Window}\label{sliding-window}}
+
+Once I was done training the classifier, next challenge was how to find
+the vehicles in a given image. Well, I used sliding window approach to
+find vehices in an image. In this we use different sized windows and
+move them accross the image, fetch feature vector for that window and
+feed those features to our trained classifier, if classifier predicts
+that Yes! it is a vehicle then mark that window.
+
+It was challenging to fit the good window size for the sliding window,
+after experimenting different combinations for the sliding window size I
+finally used two window sizes: 1. 50x50 window for y=400 to y=500 since
+near the horizon the cars will be far and small in size, in this case
+overlap is 50\% for both x and y. 2. 80x100 window for y=500 to y=650
+since in this region cars will appear larger in size, in this case
+overlap is 70\% for both x and y.
+
+I have used different sized windows because vehicles in differnt regions
+of the image appears different, i.e.~vehicles near the car appears
+bigger and far from the car appears smaller. I tried different
+overlaping factors, use of small overlaping factor worked well, if the
+window size is small too, for large windows overlaping factor should
+also be large. I realized the overlaping factor also depends on what
+threshold you use during the heatmap implementaion.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{k}{def} \PY{n+nf}{slide\PYZus{}window}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{n}{window\PYZus{}list}\PY{p}{,} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{k+kc}{None}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} 
+                             \PY{n}{xy\PYZus{}window}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}\PY{p}{,} \PY{n}{xy\PYZus{}overlap}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} If x and/or y start/stop positions not defined, set to image size}
+             \PY{k}{if} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{if} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{img}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{k}{if} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{if} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{img}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} Compute the span of the region to be searched    }
+             \PY{n}{xspan} \PY{o}{=} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{yspan} \PY{o}{=} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} Compute the number of pixels per step in x/y}
+             \PY{n}{nx\PYZus{}pix\PYZus{}per\PYZus{}step} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{xy\PYZus{}overlap}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ny\PYZus{}pix\PYZus{}per\PYZus{}step} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{xy\PYZus{}overlap}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Compute the number of windows in x/y}
+             \PY{n}{nx\PYZus{}buffer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{xy\PYZus{}overlap}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ny\PYZus{}buffer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{xy\PYZus{}overlap}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{nx\PYZus{}windows} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{p}{(}\PY{n}{xspan}\PY{o}{\PYZhy{}}\PY{n}{nx\PYZus{}buffer}\PY{p}{)}\PY{o}{/}\PY{n}{nx\PYZus{}pix\PYZus{}per\PYZus{}step}\PY{p}{)} 
+             \PY{n}{ny\PYZus{}windows} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{p}{(}\PY{n}{yspan}\PY{o}{\PYZhy{}}\PY{n}{ny\PYZus{}buffer}\PY{p}{)}\PY{o}{/}\PY{n}{ny\PYZus{}pix\PYZus{}per\PYZus{}step}\PY{p}{)} 
+             \PY{c+c1}{\PYZsh{} Initialize a list to append window positions to}
+             \PY{c+c1}{\PYZsh{} Loop through finding x and y window positions}
+             \PY{c+c1}{\PYZsh{} Note: you could vectorize this step, but in practice}
+             \PY{c+c1}{\PYZsh{} you\PYZsq{}ll be considering windows one by one with your}
+             \PY{c+c1}{\PYZsh{} classifier, so looping makes sense}
+             \PY{k}{for} \PY{n}{ys} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{ny\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{xs} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{nx\PYZus{}windows}\PY{p}{)}\PY{p}{:}
+                     \PY{c+c1}{\PYZsh{} Calculate window position}
+                     \PY{n}{startx} \PY{o}{=} \PY{n}{xs}\PY{o}{*}\PY{n}{nx\PYZus{}pix\PYZus{}per\PYZus{}step} \PY{o}{+} \PY{n}{x\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{endx} \PY{o}{=} \PY{n}{startx} \PY{o}{+} \PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{starty} \PY{o}{=} \PY{n}{ys}\PY{o}{*}\PY{n}{ny\PYZus{}pix\PYZus{}per\PYZus{}step} \PY{o}{+} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{endy} \PY{o}{=} \PY{n}{starty} \PY{o}{+} \PY{n}{xy\PYZus{}window}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                     
+                     \PY{c+c1}{\PYZsh{} Append window position to list}
+                     \PY{n}{window\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{startx}\PY{p}{,} \PY{n}{starty}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{endx}\PY{p}{,} \PY{n}{endy}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} Return the list of windows}
+             \PY{k}{return} \PY{n}{window\PYZus{}list} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{k}{def} \PY{n+nf}{search\PYZus{}windows}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{windows}\PY{p}{,} \PY{n}{clf}\PY{p}{,}\PY{n}{scaler}\PY{p}{)}\PY{p}{:}
+         
+             \PY{c+c1}{\PYZsh{}1) Create an empty list to receive positive detection windows}
+             \PY{n}{on\PYZus{}windows} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{}2) Iterate over all windows in the list}
+             \PY{k}{for} \PY{n}{window} \PY{o+ow}{in} \PY{n}{windows}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{}3) Extract the test window from original image}
+                 \PY{n}{test\PYZus{}img} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{[}\PY{n}{window}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}\PY{n}{window}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{window}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}\PY{n}{window}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{64}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{)}\PY{p}{)}      
+                 \PY{c+c1}{\PYZsh{}4) Extract features for that window using single\PYZus{}img\PYZus{}features()}
+                 \PY{n}{test\PYZus{}features}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+                 \PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{o}{=}\PY{n}{color\PYZus{}hist}\PY{p}{(}\PY{n}{test\PYZus{}img}\PY{p}{,}\PY{n}{cspace}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HLS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}color\PYZus{}hist\PYZus{}features2=color\PYZus{}hist(test\PYZus{}img,cspace=\PYZsq{}YUV\PYZsq{},channel=1)}
+                 \PY{n}{hog\PYZus{}features}\PY{o}{=}\PY{n}{get\PYZus{}hog\PYZus{}features}\PY{p}{(}\PY{n}{test\PYZus{}img}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YCrCb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{channel}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{pix\PYZus{}per\PYZus{}cell}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{spatial\PYZus{}features}\PY{o}{=}\PY{n}{bin\PYZus{}spatial}\PY{p}{(}\PY{n}{test\PYZus{}img}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{YUV}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{color\PYZus{}hist\PYZus{}features1}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}temp=np.append(temp,color\PYZus{}hist\PYZus{}features2)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{hog\PYZus{}features}\PY{p}{)}
+                 \PY{n}{temp}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{,}\PY{n}{spatial\PYZus{}features}\PY{p}{)}
+                 \PY{n}{test\PYZus{}features}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}print(test\PYZus{}features)}
+                 \PY{c+c1}{\PYZsh{}5) Scale extracted features to be fed to classifier}
+                 \PY{c+c1}{\PYZsh{}scaler=StandardScaler().fit(test\PYZus{}features)}
+                 \PY{n}{features} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{test\PYZus{}features}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}print(features)}
+                 \PY{c+c1}{\PYZsh{}6) Predict using your classifier}
+                 \PY{n}{prediction} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{features}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}7) If positive (prediction == 1) then save the window}
+                 \PY{c+c1}{\PYZsh{}print(prediction)}
+                 \PY{k}{if} \PY{n}{prediction} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                     \PY{n}{on\PYZus{}windows}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{window}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}8) Return windows for positive detections}
+             \PY{k}{return} \PY{n}{on\PYZus{}windows}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{k}{def} \PY{n+nf}{draw\PYZus{}boxes}\PY{p}{(}\PY{n}{img}\PY{p}{,} \PY{n}{bboxes}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,} \PY{n}{thick}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Make a copy of the image}
+             \PY{n}{imcopy} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{img}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Iterate through the bounding boxes}
+             \PY{k}{for} \PY{n}{bbox} \PY{o+ow}{in} \PY{n}{bboxes}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Draw a rectangle given bbox coordinates}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{rectangle}\PY{p}{(}\PY{n}{imcopy}\PY{p}{,} \PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{p}{,} \PY{n}{thick}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} Return the image copy with boxes drawn}
+             \PY{k}{return} \PY{n}{imcopy}
+\end{Verbatim}
+
+
+    \hypertarget{heatmap}{%
+\subsection{Heatmap}\label{heatmap}}
+
+Since window size is small, hence our classfier predicts 1(Vehicle) for
+most of the windows that contain some part of the vehicle in it because
+of this for a vehicle we have different windows marked. But at last we
+want to show only one bounding box for a vehicle. To overcome this
+problem we use heatmap.
+
+\texttt{add\_heat} function is used to find out which part of image was
+considered how many times by the classifier that this part has a
+vehicle. i.e.~if the value of a pixel is 10 it means that pixel was
+included 10 times in such windows for which the prediction was 1.
+
+Once we have a heatmap now we can apply thresholding to it so that we
+have only those regions that have higher probabilities that there is a
+vehicle in the region.
+
+\hypertarget{label}{%
+\paragraph{Label}\label{label}}
+
+Label the obtained detection areas with the \texttt{label()} function of
+the scipy.ndimage.measurements package. In this step we outline the
+boundaries of labels that is, we label each cluster of windows as one
+car, so in this step we simply get the bounding box of that
+cluster(vehicle).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{ndimage}\PY{n+nn}{.}\PY{n+nn}{measurements} \PY{k}{import} \PY{n}{label}
+         \PY{k}{def} \PY{n+nf}{add\PYZus{}heat}\PY{p}{(}\PY{n}{heatmap}\PY{p}{,} \PY{n}{bbox\PYZus{}list}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Iterate through list of bboxes}
+             \PY{k}{for} \PY{n}{box} \PY{o+ow}{in} \PY{n}{bbox\PYZus{}list}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Add += 1 for all pixels inside each bbox}
+                 \PY{c+c1}{\PYZsh{} Assuming each \PYZdq{}box\PYZdq{} takes the form ((x1, y1), (x2, y2))}
+                 \PY{n}{heatmap}\PY{p}{[}\PY{n}{box}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}\PY{n}{box}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{box}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}\PY{n}{box}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+             \PY{c+c1}{\PYZsh{} Return updated heatmap}
+             \PY{k}{return} \PY{n}{heatmap}\PY{c+c1}{\PYZsh{} Iterate through list of bboxes}
+             
+         \PY{k}{def} \PY{n+nf}{apply\PYZus{}threshold}\PY{p}{(}\PY{n}{heatmap}\PY{p}{,} \PY{n}{threshold}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Zero out pixels below the threshold}
+             \PY{n}{heatmap}\PY{p}{[}\PY{n}{heatmap} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{threshold}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{c+c1}{\PYZsh{} Return thresholded map}
+             \PY{k}{return} \PY{n}{heatmap}
+         
+         \PY{k}{def} \PY{n+nf}{draw\PYZus{}labeled\PYZus{}bboxes}\PY{p}{(}\PY{n}{img}\PY{p}{,} \PY{n}{labels}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Iterate through all detected cars}
+             \PY{k}{for} \PY{n}{car\PYZus{}number} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{labels}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} Find pixels with each car\PYZus{}number label value}
+                 \PY{n}{nonzero} \PY{o}{=} \PY{p}{(}\PY{n}{labels}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{n}{car\PYZus{}number}\PY{p}{)}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{} Identify x and y values of those pixels}
+                 \PY{n}{nonzeroy} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{nonzero}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{nonzerox} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{nonzero}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{} Define a bounding box based on min/max x and y}
+                 \PY{n}{bbox} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{nonzerox}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{nonzeroy}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{nonzerox}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{nonzeroy}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{} Draw the box on the image}
+                 \PY{k}{if}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{absolute}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{30}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(} \PY{n}{np}\PY{o}{.}\PY{n}{absolute}\PY{p}{(}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{cv2}\PY{o}{.}\PY{n}{rectangle}\PY{p}{(}\PY{n}{img}\PY{p}{,} \PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{bbox}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} Return the image}
+             \PY{k}{return} \PY{n}{img}
+\end{Verbatim}
+
+
+    \hypertarget{output-after-using-heatmap}{%
+\paragraph{Output after using
+heatmap}\label{output-after-using-heatmap}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{test\PYZus{}imagee}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./test\PYZus{}images/test1.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{windows}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{n}{windows}\PY{o}{=}\PY{n}{slide\PYZus{}window}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{,}\PY{n}{windows}\PY{p}{,}\PY{n}{x\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{200}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,}\PY{n}{xy\PYZus{}window}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,}\PY{n}{xy\PYZus{}overlap}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{windows}\PY{o}{=}\PY{n}{slide\PYZus{}window}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{,}\PY{n}{windows}\PY{p}{,}\PY{n}{x\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{200}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{656}\PY{p}{]}\PY{p}{,}\PY{n}{xy\PYZus{}window}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{)}\PY{p}{,}\PY{n}{xy\PYZus{}overlap}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}windows=slide\PYZus{}window(test\PYZus{}imagee,windows,x\PYZus{}start\PYZus{}stop=[200, None], y\PYZus{}start\PYZus{}stop=[500, 650],xy\PYZus{}window=(128,128),xy\PYZus{}overlap=(0.6,0.6))}
+         \PY{n}{pickle\PYZus{}input} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{classifier.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}input}\PY{p}{)}
+         \PY{n}{clf1}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}input}\PY{p}{)}
+         \PY{n}{scaler1}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}clf,scaler=train\PYZus{}and\PYZus{}save()}
+         \PY{n}{pickle\PYZus{}input}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         \PY{n}{on\PYZus{}windows}\PY{o}{=}\PY{n}{search\PYZus{}windows}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{,} \PY{n}{windows}\PY{p}{,} \PY{n}{clf1}\PY{p}{,}\PY{n}{scaler1}\PY{p}{)}
+         \PY{n}{heat}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float}\PY{p}{)}
+         \PY{n}{heatmap}\PY{o}{=}\PY{n}{add\PYZus{}heat}\PY{p}{(}\PY{n}{heat}\PY{p}{,}\PY{n}{on\PYZus{}windows}\PY{p}{)}
+         \PY{n}{th}\PY{o}{=}\PY{n}{apply\PYZus{}threshold}\PY{p}{(}\PY{n}{heatmap}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{)}
+         \PY{n}{f}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{heatmap}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HeatMap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{th}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{heatmap with threshold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} <matplotlib.text.Text at 0x1a4dd14ce48>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{pipeline}{%
+\subsection{Pipeline}\label{pipeline}}
+
+I have used a class named \texttt{vehicle\_detection} to keep data from
+the previous frames. A vehicle will not move more than few pixels in any
+direction hence we can use data collected from previous frames so that
+there is small variation in the window size in consecutive frames.
+
+The pipeline performs few steps during execution: 1. It takes an image
+as an input and converts it from RGB to BGR color space. 2. It calls
+\texttt{slide\_window()} function to get different windows. 3. It loads
+the trained classifier and scaler from the pickle file. 4. It calls
+\texttt{search\_window()} and provides image and windows from step 2 to
+the function, this function fetches features for that window and feeds
+them to classifier to get the predicted value. 5. It calls the heatmap
+fucntion to get only a bounding box for each image in an image. 6. It
+keeps the running average of the heatmap values for previous 18 frames,
+later I used the mean of those values. 9. Draw the bounding box and
+return the image
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{k}{class} \PY{n+nc}{vehicle\PYZus{}detection}\PY{p}{:}
+             \PY{n}{heatmap\PYZus{}average}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+             \PY{k}{def} \PY{n+nf}{pipeline}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{image}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{windows}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+                 \PY{n}{image}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}RGB2BGR}\PY{p}{)}
+                 \PY{n}{windows}\PY{o}{=}\PY{n}{slide\PYZus{}window}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{,}\PY{n}{windows}\PY{p}{,}\PY{n}{x\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{200}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{]}\PY{p}{,}\PY{n}{xy\PYZus{}window}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,}\PY{n}{xy\PYZus{}overlap}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{windows}\PY{o}{=}\PY{n}{slide\PYZus{}window}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{,}\PY{n}{windows}\PY{p}{,}\PY{n}{x\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{200}\PY{p}{,} \PY{k+kc}{None}\PY{p}{]}\PY{p}{,} \PY{n}{y\PYZus{}start\PYZus{}stop}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{656}\PY{p}{]}\PY{p}{,}\PY{n}{xy\PYZus{}window}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{)}\PY{p}{,}\PY{n}{xy\PYZus{}overlap}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{)}\PY{p}{)}
+         
+                 \PY{n}{pickle\PYZus{}in} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{classifier.pkl}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                 \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}in}\PY{p}{)}
+                 \PY{n}{clf}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                 \PY{n}{example\PYZus{}dict} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{pickle\PYZus{}in}\PY{p}{)}
+                 \PY{n}{scaler}\PY{o}{=}\PY{n}{example\PYZus{}dict}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                 \PY{c+c1}{\PYZsh{}clf,scaler=train\PYZus{}and\PYZus{}save()}
+                 \PY{n}{pickle\PYZus{}in}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{on\PYZus{}windows}\PY{o}{=}\PY{n}{search\PYZus{}windows}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{windows}\PY{p}{,} \PY{n}{clf}\PY{p}{,}\PY{n}{scaler}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}output=draw\PYZus{}boxes(image,on\PYZus{}windows)}
+                 \PY{n}{heat}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros\PYZus{}like}\PY{p}{(}\PY{n}{image}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float}\PY{p}{)}
+                 \PY{n}{heatmap}\PY{o}{=}\PY{n}{add\PYZus{}heat}\PY{p}{(}\PY{n}{heat}\PY{p}{,}\PY{n}{on\PYZus{}windows}\PY{p}{)}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{p}{,}\PY{n}{heatmap}\PY{p}{)}
+                 \PY{k}{if}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{18}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{heatmap}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{heatmap}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{p}{]}
+                 \PY{c+c1}{\PYZsh{}print(len(self.heatmap\PYZus{}average),len(np.array(heatmap).ravel()))}
+                 \PY{n}{heatmap}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{heatmap\PYZus{}average}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{heatmap}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                 \PY{n}{heatmap}\PY{o}{=}\PY{n}{heatmap}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{image}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}print(heatmap.shape)}
+                 \PY{n}{heatmap}\PY{o}{=}\PY{n}{apply\PYZus{}threshold}\PY{p}{(}\PY{n}{heatmap}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{)}
+                 \PY{n}{labels} \PY{o}{=} \PY{n}{label}\PY{p}{(}\PY{n}{heatmap}\PY{p}{)}
+                 \PY{n}{output} \PY{o}{=} \PY{n}{draw\PYZus{}labeled\PYZus{}bboxes}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{p}{)}
+                 \PY{k}{return} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{output}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{final-output-for-one-frame}{%
+\paragraph{FInal Output for one
+frame}\label{final-output-for-one-frame}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{test\PYZus{}imagee}\PY{o}{=}\PY{n}{img}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./test\PYZus{}images/test1.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{detection}\PY{o}{=}\PY{n}{vehicle\PYZus{}detection}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{detection}\PY{o}{.}\PY{n}{pipeline}\PY{p}{(}\PY{n}{test\PYZus{}imagee}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}60}]:} <matplotlib.image.AxesImage at 0x1a4e7c08c18>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{from} \PY{n+nn}{moviepy}\PY{n+nn}{.}\PY{n+nn}{editor} \PY{k}{import} \PY{n}{VideoFileClip}
+         \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{HTML}
+         \PY{n}{white\PYZus{}output} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{project\PYZus{}video\PYZus{}Submission\PYZus{}final.mp4}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{detection}\PY{o}{=}\PY{n}{vehicle\PYZus{}detection}\PY{p}{(}\PY{p}{)}
+         \PY{n}{clip1} \PY{o}{=} \PY{n}{VideoFileClip}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{project\PYZus{}video.mp4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{white\PYZus{}clip} \PY{o}{=} \PY{n}{clip1}\PY{o}{.}\PY{n}{fl\PYZus{}image}\PY{p}{(}\PY{n}{detection}\PY{o}{.}\PY{n}{pipeline}\PY{p}{)} \PY{c+c1}{\PYZsh{}NOTE: this function expects color images!!}
+         \PY{o}{\PYZpc{}}\PY{k}{time} white\PYZus{}clip.write\PYZus{}videofile(white\PYZus{}output, audio=False)
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[MoviePy] >>>> Building video project\_video\_Submission\_final.mp4
+[MoviePy] Writing video project\_video\_Submission\_final.mp4
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+100\%|███████████████████████████████████████████████████████████████████████████▉| 1260/1261 [1:07:25<00:03,  3.39s/it]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[MoviePy] Done.
+[MoviePy] >>>> Video ready: project\_video\_Submission\_final.mp4 
+
+Wall time: 1h 7min 27s
+
+    \end{Verbatim}
+
+    \hypertarget{challenges}{%
+\subsection{Challenges}\label{challenges}}
+
+I faced following challenges while working on the project. 1. First
+challenge was to choose what features to use, it took a lot of
+experimentation to select the appropriate features. 2. Second was which
+classifier should I use, I chose SVM as classifier and `linear' as my
+kernel but even after achieving 95\% of test accuracy with linear kernel
+lots of false postive detections were made. I later used `rbf' kernel to
+overcome the problem of false detection. 3. What size of windows should
+I choose was the most challenging part, It took lots of effort and
+testing to come up with the window size that would work fine for our
+problem. I chose different sized windows for vehicle detection. 4. After
+detection bounding boxes were wobbling too much frame to frame, to
+overcome this I tried keeping a running average of heatmap from previous
+frames. It worked out really well for this problem.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
